@@ -3,10 +3,10 @@ CPU ?= cortex-m3
 BOARD ?= stm32vldiscovery
 
 qemu:
-	arm-none-eabi-as -mthumb -mcpu=${CPU} -ggdb -c foo.S -o foo.o
-	arm-none-eabi-ld -Tmap.ld foo.o -o foo.elf
-	arm-none-eabi-objdump -D -S foo.elf > foo.elf.lst
-	arm-none-eabi-readelf -a foo.elf > foo.elf.debug
+	arm-none-eabi-as -mthumb -mcpu=${CPU} -ggdb -c $(PROJECT).S -o $(PROJECT).o
+	arm-none-eabi-ld -Tmap.ld $(PROJECT).o -o $(PROJECT).elf
+	arm-none-eabi-objdump -D -S $(PROJECT).elf > $(PROJECT).elf.lst
+	arm-none-eabi-readelf -a $(PROJECT).elf > $(PROJECT).elf.debug
 	qemu-system-arm -S -M $(BOARD) -cpu $(CPU) -nographic -kernel $(PROJECT).elf -gdb tcp::1234
 
 gdb:
