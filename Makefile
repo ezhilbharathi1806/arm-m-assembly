@@ -1,4 +1,4 @@
-PROJECT = foo
+PROJECT = systick
 CPU ?= cortex-m3
 BOARD ?= stm32vldiscovery
 
